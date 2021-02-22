@@ -16,7 +16,7 @@ app.get("/phone-numbers/check", async (req, res) => {
   try {
     const data = await client.availablePhoneNumbers("US").fetch();
     const list = data.subresource_uris.local;
-    const response  = axios.get(`https://api.twilio.com${list}?AreaCode=${req.query.areaCode}`)
+    const response  = axios.get(`https://api.twilio.com${list}?AreaCode=${req.query.areaCode}&PageSize=5`)
     res.status(200).send(response);
   } catch {
     res.status(500).send({ message: "Internal Server Error" });
